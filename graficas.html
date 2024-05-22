@@ -1,0 +1,153 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Data Visualization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+</head>
+<body>
+    <div id="gráficas" class="container mt-5">
+        <h2>DATOS GRAFICADOS</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Lap Times</h3>
+                <canvas id="lapTimesChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h3>Pit Stops</h3>
+                <canvas id="pitStopsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de los tiempos de vuelta
+        const lapTimesData = {
+            labels: [
+                "alonso", "vettel", "webber", "hamilton", "petrov", 
+                "michael_schumacher", "rosberg", "massa", "buemi", 
+                "button", "perez", "alguersuari", "maldonado", "resta", 
+                "trulli", "kovalainen", "heidfeld", "sutil", "liuzzi", 
+                "barrichello", "glock", "karthikeyan", "ambrosio", "kobayashi"
+            ],
+            datasets: [{
+                label: 'Lap Time (s)',
+                data: [
+                    94.494, 95.274, 96.329, 96.991, 98.084, 
+                    98.633, 99.139, 99.979, 100.611, 
+                    100.998, 101.433, 101.876, 102.255, 102.808, 
+                    103.553, 104.276, 105.164, 106.107, 106.737, 
+                    107.077, 107.556, 108.183, 108.573, 117.590
+                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Datos de las paradas en boxes
+        const pitStopsData = {
+            labels: [
+                "kobayashi", "perez", "maldonado", "vettel", "buemi", 
+                "alonso", "webber", "michael_schumacher", "hamilton", 
+                "petrov", "rosberg", "massa", "alguersuari", "barrichello", 
+                "sutil", "button", "karthikeyan", "resta", "trulli", 
+                "kovalainen", "liuzzi", "glock", "ambrosio", "heidfeld"
+            ],
+            datasets: [{
+                label: 'Average Duration (s)',
+                data: [
+                    24.871, 23.592, 22.689, 20.253, 20.818, 
+                    20.567, 20.881, 20.084, 19.761, 
+                    21.856, 20.647, 20.800, 20.741, 29.936, 
+                    20.773, 20.015, 24.843, 20.070, 22.364, 
+                    21.019, 23.157, 22.744, 23.176, 21.322
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Configuración de la gráfica de tiempos de vuelta
+        const lapTimesConfig = {
+            type: 'bar',
+            data: lapTimesData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Configuración de la gráfica de paradas en boxes
+        const pitStopsConfig = {
+            type: 'bar',
+            data: pitStopsData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Inicialización de las gráficas
+        const lapTimesChart = new Chart(
+            document.getElementById('lapTimesChart'),
+            lapTimesConfig
+        );
+
+        const pitStopsChart = new Chart(
+            document.getElementById('pitStopsChart'),
+            pitStopsConfig
+        );
+    </script>
+
+<canvas id="driverStandingsChart" width="400" height="400"></canvas>
+
+<script>
+    const driverData = {
+        labels: [
+            "Kimi Räikkönen", "Felipe Massa", "Lewis Hamilton", "Robert Kubica",
+            "Nick Heidfeld", "Heikki Kovalainen", "Mark Webber", "Fernando Alonso",
+            "Jarno Trulli", "Nico Rosberg", "Kazuki Nakajima", "Jenson Button",
+            "Sébastien Bourdais", "David Coulthard", "Timo Glock", "Giancarlo Fisichella",
+            "Rubens Barrichello", "Nelson Piquet Jr.", "Takuma Sato", "Anthony Davidson",
+            "Adrian Sutil", "Sebastian Vettel"
+        ],
+        datasets: [{
+            label: 'Points',
+            data: [
+                35, 28, 28, 24, 20, 14, 10, 9, 9, 8, 5, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    const driverStandingsConfig = {
+        type: 'bar',
+        data: driverData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    const driverStandingsChart = new Chart(
+        document.getElementById('driverStandingsChart'),
+        driverStandingsConfig
+    );
+</script>
+</body>
+</html>
+   
